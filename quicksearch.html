@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"classes.list.html":{"id":"classes.list.html","title":"Classes","body":" DocStrap Classes Loan Classes Classes Loan × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" DocStrap Classes Loan × Search results Close "},"Loan.html":{"id":"Loan.html","title":"Class: Loan","body":" DocStrap Classes Loan Class: Loan Loan new Loan(loanName, interest, time, loanId) Loan Constructor for a loan object. loan has a loanId and loan that the loan is . Parameters: Name Type Description loanName Name of the loan interest the id of the loan requirement time the number of members loanId the unique Id which corresponds to a registered loan Returns: - loan object Methods &lt;async&gt; validateLoan(loanId) validateLoan check for valid loanId, should be cross checked with government Parameters: Name Type Description loanId an array of choices Returns: - yes if valid loan, no if invalid × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
